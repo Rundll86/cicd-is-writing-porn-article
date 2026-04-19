@@ -1,8 +1,8 @@
 name: 写小说
 
 on:
-    schedule:
-        - cron: "*/10 * * * *"
+    # schedule:
+    #     - cron: "*/10 * * * *"
     push:
         branches:
             - main
@@ -11,14 +11,15 @@ jobs:
     write:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v2
+            - uses: actions/checkout@v4
+            - uses: actions/setup-python@v3
+              with:
+                  python-version: "3.11.0"
+            - run: pip install -r requirements.txt
 
-            - name: Write article
-              run: python3 write.py
+            - run: python3 write.py
 
-            - name: Commit and push changes
-              run: |
+            - run: |
                   git config --global user.name "github-actions"
                   git config --global user.email "github-actions@github.com"
                   git add .
