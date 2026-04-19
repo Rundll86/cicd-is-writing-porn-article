@@ -5,7 +5,7 @@ on:
     #     - cron: "*/10 * * * *"
     push:
         branches:
-            - master # 傻逼AI瞎写分支名
+            - master
 
 jobs:
     write:
