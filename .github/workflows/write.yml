@@ -26,5 +26,5 @@ jobs:
                   git commit -m "Automated writing update"
                   git push
         env:
-            AI_API_KEY: ${{ secrets.AI_API_KEY }}
+            AI_APIKEY: ${{ secrets.AI_API_KEY }}
             AI_GENERATOR: ${{ secrets.AI_GENERATOR }}
