@@ -1,6 +1,7 @@
 from constants import ARTICLE_FILE
 from generate import generators
 import os
+import sys
 from structs import ConfigOutput
 
 system_prompt = (
@@ -25,7 +26,10 @@ if generator_id and apikey:
             article_output.write(f"\n{response.next_paraphrase}")
         else:
             print("写不出来")
+            sys.exit(1)
     else:
         print("生成器不对")
+        sys.exit(1)
 else:
     print("没写配置")
+    sys.exit(1)
