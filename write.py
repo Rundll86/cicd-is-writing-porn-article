@@ -14,13 +14,15 @@ apikey = os.environ.get("AI_APIKEY")
 generator_id = os.environ.get("AI_GENERATOR")
 
 if generator_id and apikey:
-    generator = generators[generator_id]
-    if generator:
-        text = generator(article_current_content, system_prompt, apikey)
+    generate = generators[generator_id]
+    if generate:
+        print("当前文段：", article_current_content)
+        text = generate(article_current_content, system_prompt, apikey)
         if text:
             response = ConfigOutput.model_validate_json(text)
             print("续写：", response.next_paraphrase)
             print("自评：", response.self_comment)
+            article_output.write(f"\n{response.next_paraphrase}")
         else:
             print("写不出来")
     else:
