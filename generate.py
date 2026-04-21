@@ -10,10 +10,10 @@ def generate_rotafans(current: str, prompt: str, apikey: str) -> str | None:
     return (
         OpenAI(
             api_key=apikey,
-            base_url="https://rota.fans/v1",
+            base_url="https://api.hujiarong.site/v1",
         )
         .chat.completions.create(
-            model="grok-4.1-fast",
+            model="grok-4.20-fast",
             messages=[
                 {"role": "system", "content": prompt},
                 {"role": "assistant", "content": AI_RESPONSEOK},
@@ -27,6 +27,7 @@ def generate_rotafans(current: str, prompt: str, apikey: str) -> str | None:
                     "schema": ConfigOutput.model_json_schema(),
                 },
             },
+            stream=False,
         )
         .choices[0]
         .message.content
