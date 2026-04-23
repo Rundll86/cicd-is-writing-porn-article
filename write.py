@@ -29,4 +29,5 @@ if not text:
 response = ConfigOutput.model_validate_json(text)
 print("续写：", response.next_paraphrase)
 print("自评：", response.self_comment)
+print("中文全文：", response.chinese_version)
 article_output.write(f"\n{response.next_paraphrase}")
