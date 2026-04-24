@@ -1,4 +1,4 @@
-from constants import ARTICLE_FILE
+from constants import ARTICLE_FILE, SEED_FILE
 from generate import generators
 import os
 import sys
@@ -9,7 +9,16 @@ system_prompt = (
     .read()
     .format(JSON_SCHEMA=ConfigOutput.model_json_schema())
 )
-article_output = open(ARTICLE_FILE, "r+", encoding="utf8")
+if os.path.exists(ARTICLE_FILE):
+    print("有article正在续写！！！")
+    article_output = open(ARTICLE_FILE, "r+", encoding="utf8")
+elif os.path.exists(SEED_FILE):
+    print("没有article，正在种下seed！！！！")
+    article_output = open(ARTICLE_FILE, "w+", encoding="utf8")
+    article_output.write(open(SEED_FILE, encoding="utf8").read())
+else:
+    print("既没article又没seed")
+    sys.exit(1)
 article_current_content = article_output.read()
 apikey = os.environ.get("AI_APIKEY")
 generator_id = os.environ.get("AI_GENERATOR")
