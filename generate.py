@@ -6,7 +6,6 @@ from google.genai import types
 from structs import ConfigOutput
 
 
-#
 def generate_rotafans(current: str, prompt: str, apikey: str) -> str | None:
     return (
         OpenAI(
