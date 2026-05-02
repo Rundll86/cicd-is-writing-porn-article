@@ -11,20 +11,21 @@ jobs:
     write:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-python@v3
-              with:
-                  python-version: "3.11.0"
-            - run: pip install -r requirements.txt
+            # - uses: actions/checkout@v4
+            # - uses: actions/setup-python@v3
+            #   with:
+            #       python-version: "3.11.0"
+            # - run: pip install -r requirements.txt
 
-            - run: python3 write.py
+            # - run: python3 write.py
 
-            - run: |
-                  git config --global user.name "github-actions"
-                  git config --global user.email "github-actions@github.com"
-                  git add .
-                  git commit -m "Automated writing update"
-                  git push
+            # - run: |
+            #       git config --global user.name "github-actions"
+            #       git config --global user.email "github-actions@github.com"
+            #       git add .
+            #       git commit -m "Automated writing update"
+            #       git push
+            - run: echo "Test"
         env:
             AI_APIKEY: ${{ secrets.AI_API_KEY }}
             AI_GENERATOR: ${{ secrets.AI_GENERATOR }}
